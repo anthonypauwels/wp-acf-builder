@@ -1,0 +1,29 @@
+{
+    "name": "anthonypauwels/wp-acf-builder",
+    "type": "library",
+    "description": "An Advanced Custom Field configuration builder using Closure and helpers methods",
+    "keywords": [
+        "wordpress",
+        "acf",
+        "helper"
+    ],
+    "authors": [
+        {
+            "name": "Anthony Pauwels",
+            "email": "hello@anthonypauwels.be",
+            "homepage": "https://anthonypauwels.be/"
+        }
+    ],
+    "require": {
+        "php": "^8.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Anthonypauwels\\WpAcfBuilder\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    }
+}
