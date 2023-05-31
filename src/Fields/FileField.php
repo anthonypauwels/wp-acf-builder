@@ -55,7 +55,7 @@ class FileField extends AbstractField
     public function toArray(): array
     {
         return array_merge(
-            $this->genericExport('field'),
+            $this->genericExport('file'),
             [
                 'return_format' => $this->format,
                 'preview_size' => $this->previewSize,

@@ -89,7 +89,7 @@ class GalleryField extends AbstractField
     public function toArray(): array
     {
         return array_merge(
-            $this->genericExport('image'),
+            $this->genericExport('gallery'),
             [
                 'return_format' => $this->format,
                 'preview_size' => $this->previewSize,
