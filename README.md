@@ -191,6 +191,30 @@ Builder::namespace( 'templates', function () {
 
 For more information about ACF filters, check the Advanced Custom Fields [documentation about Filters](https://www.advancedcustomfields.com/resources/#filters).
 
+### Params and default params
+
+If you want to set an ACF parameters not available on the package, you can use the `param` method on each field. Imagine you want to use WPML with your ACF fields,
+you can set a value to `wpml_cf_preferences` like this way :
+
+```php
+// ...
+function ( Group $group ) {
+    $group->text('Sub Title')->param('wpml_cf_preferences', 2 ); // This field will be translated
+} )
+// ...
+```
+
+But setting a default parameter to all fields can be long and daunting, so you can also pass a default parameter to the `Builder`. 
+This way, each field will be created using this parameter. If the parameter is also defined inside the field, this value will prevail :
+
+```php
+// ...
+Builder::param('wpml_cf_preferences', 2 ); // every field will have the "wpml_cf_preferences" set to 2 except if the field overwrite it
+// ...
+```
+
+You must set default parameters before building fields.
+
 ### API documentation
 
 WP ACF Builder provides a fluent API for each instances available.

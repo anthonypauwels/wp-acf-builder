@@ -1,6 +1,7 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Contracts\Field;
 use Anthonypauwels\WpAcfBuilder\Concerns\Wrapper;
 use Anthonypauwels\WpAcfBuilder\Concerns\Required;
@@ -22,6 +23,9 @@ abstract class AbstractField implements Field
     /** @var string */
     protected string $name;
 
+    /** @var array */
+    protected array $params = [];
+
     /**
      * @param string $label
      * @param string|null $name
@@ -38,8 +42,20 @@ abstract class AbstractField implements Field
         }
 
         $this->label = $label;
-        $this->name = slugify( $name );
-        $this->key = slugify( $key );
+        $this->name = wp_acf_builder_slugify( $name );
+        $this->key = wp_acf_builder_slugify( $key );
+    }
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @return $this
+     */
+    public function param(string $key, mixed $value): AbstractField
+    {
+        $this->params[ $key ] = $value;
+
+        return $this;
     }
 
     /**
@@ -92,7 +108,9 @@ abstract class AbstractField implements Field
      */
     protected function genericExport(string $type): array
     {
-        return [
+        return array_merge(
+            Builder::getParams(),
+            $this->params, [
             'key' => $this->getFieldKey(),
             'name' => $this->name,
             'label' => $this->label,
@@ -102,7 +120,7 @@ abstract class AbstractField implements Field
             'conditional_logic' => empty( $this->conditionalLogic ) ? 0 : $this->conditionalLogic,
             'wrapper' => $this->wrapperAttributes,
             'default_value' => $this->default,
-        ];
+        ] );
     }
 
     /**

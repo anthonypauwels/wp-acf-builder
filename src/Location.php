@@ -53,7 +53,7 @@ class Location implements Group
     public function __construct(string $name, string $key = null)
     {
         if ( $key === null ) {
-            $key = slugify( $name );
+            $key = wp_acf_builder_slugify( $name );
         }
 
         $this->key = 'group_' . $key;

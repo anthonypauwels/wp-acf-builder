@@ -38,8 +38,8 @@ abstract class AbstractGroup implements Group
         }
 
         $this->label = $label;
-        $this->name = slugify( $name );
-        $this->key = slugify( $key );
+        $this->name = wp_acf_builder_slugify( $name );
+        $this->key = wp_acf_builder_slugify( $key );
     }
 
     /**

@@ -11,6 +11,9 @@ class Builder
     /** @var Location[] */
     static protected array $markedForBuild = [];
 
+    /** @var array */
+    static protected array $params = [];
+
     /**
      * Build all groups marked for build
      *
@@ -194,5 +197,23 @@ class Builder
         $closure->call( $group, $group );
 
         return $group;
+    }
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @return void
+     */
+    public static function param(string $key, mixed $value): void
+    {
+        self::$params[ $key ] = $value;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getParams(): array
+    {
+        return self::$params;
     }
 }
