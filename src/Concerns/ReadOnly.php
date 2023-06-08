@@ -10,9 +10,9 @@ trait ReadOnly
 
     /**
      * @param bool $value
-     * @return AbstractField
+     * @return $this
      */
-    public function readOnly(bool $value = true): AbstractField
+    public function readOnly(bool $value = true): self
     {
         $this->readOnly = $value;
 
@@ -20,9 +20,9 @@ trait ReadOnly
     }
 
     /**
-     * @return AbstractField
+     * @return $this
      */
-    public function notReadOnly(): AbstractField
+    public function notReadOnly(): self
     {
         return $this->readOnly( false );
     }

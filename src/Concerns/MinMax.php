@@ -13,7 +13,7 @@ trait MinMax
      * @param int $value
      * @return $this
      */
-    public function min(int $value)
+    public function min(int $value):self
     {
         $this->min = $value;
 
@@ -24,7 +24,7 @@ trait MinMax
      * @param int $value
      * @return $this
      */
-    public function max(int $value)
+    public function max(int $value):self
     {
         $this->max = $value;
 

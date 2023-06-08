@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait Conditional
 {
     /** @var array */
@@ -13,9 +11,9 @@ trait Conditional
      * @param string $operator
      * @param string|null $value
      * @param string $boolean
-     * @return AbstractField
+     * @return $this
      */
-    public function showIf(string $param, string $operator, string $value = null, string $boolean = 'and'): AbstractField
+    public function showIf(string $param, string $operator, string $value = null, string $boolean = 'and'): self
     {
         if ( func_num_args() === 2 ) {
             $value = $operator;
@@ -59,7 +57,7 @@ trait Conditional
      * @param string|null $value
      * @return $this
      */
-    public function andShowIf(string $param, string $operator, string $value = null): AbstractField
+    public function andShowIf(string $param, string $operator, string $value = null): self
     {
         return $this->showIf( $param, $operator, $value );
     }
@@ -70,7 +68,7 @@ trait Conditional
      * @param string|null $value
      * @return $this
      */
-    public function orShowIf(string $param, string $operator, string $value = null): AbstractField
+    public function orShowIf(string $param, string $operator, string $value = null): self
     {
         return $this->showIf( $param, $operator, $value, 'or' );
     }

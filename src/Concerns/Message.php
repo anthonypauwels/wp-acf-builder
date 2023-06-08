@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait Message
 {
     /** @var string */
@@ -10,9 +8,9 @@ trait Message
 
     /**
      * @param string $content
-     * @return AbstractField
+     * @return $this
      */
-    public function message(string $content): AbstractField
+    public function message(string $content): self
     {
         $this->message = $content;
 

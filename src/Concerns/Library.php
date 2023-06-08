@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait Library
 {
     /** @var string */
@@ -10,9 +8,9 @@ trait Library
 
     /**
      * @param string $value
-     * @return AbstractField
+     * @return $this
      */
-    public function restrictLibrary(string $value): AbstractField
+    public function restrictLibrary(string $value): self
     {
         if ( in_array( $value, ['all', 'uploadedTo'] ) ) {
             $this->restrictLibrary = $value;
@@ -22,17 +20,17 @@ trait Library
     }
 
     /**
-     * @return AbstractField
+     * @return $this
      */
-    public function showAll(): AbstractField
+    public function showAll(): self
     {
         return $this->restrictLibrary('all');
     }
 
     /**
-     * @return AbstractField
+     * @return $this
      */
-    public function onlyUploaded(): AbstractField
+    public function onlyUploaded(): self
     {
         return $this->restrictLibrary('uploadedTo');
     }

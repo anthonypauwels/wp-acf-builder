@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait Choices
 {
     /** @var array */
@@ -10,9 +8,9 @@ trait Choices
 
     /**
      * @param array $choices
-     * @return AbstractField
+     * @return $this
      */
-    public function choices(array $choices): AbstractField
+    public function choices(array $choices): self
     {
         $this->choices = $choices;
 

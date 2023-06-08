@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait Position
 {
     /** @var string */
@@ -10,9 +8,9 @@ trait Position
 
     /**
      * @param string $value
-     * @return AbstractField
+     * @return $this
      */
-    public function layout(string $value): AbstractField
+    public function layout(string $value): self
     {
         if ( in_array( $value, ['horizontal', 'vertical'] ) ) {
             $this->layout = $value;
@@ -22,17 +20,17 @@ trait Position
     }
 
     /**
-     * @return AbstractField
+     * @return $this
      */
-    public function vertical(): AbstractField
+    public function vertical(): self
     {
         return $this->layout( 'vertical' );
     }
 
     /**
-     * @return AbstractField
+     * @return $this
      */
-    public function horizontal(): AbstractField
+    public function horizontal(): self
     {
         return $this->layout( 'horizontal' );
     }

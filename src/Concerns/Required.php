@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait Required
 {
     /** @var int */
@@ -10,9 +8,9 @@ trait Required
 
     /**
      * @param bool $value
-     * @return AbstractField
+     * @return $this
      */
-    public function required(bool $value = true): AbstractField
+    public function required(bool $value = true): self
     {
         $this->required = $value;
 
@@ -20,9 +18,9 @@ trait Required
     }
 
     /**
-     * @return AbstractField
+     * @return $this
      */
-    public function notRequired(): AbstractField
+    public function notRequired(): self
     {
         return $this->required( false );
     }

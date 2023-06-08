@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait Placeholder
 {
     /** @var string */
@@ -10,9 +8,9 @@ trait Placeholder
 
     /**
      * @param string $value
-     * @return AbstractField
+     * @return $this
      */
-    public function placeholder(string $value): AbstractField
+    public function placeholder(string $value): self
     {
         $this->placeholder = $value;
 

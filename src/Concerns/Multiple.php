@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait Multiple
 {
     /** @var bool */
@@ -10,9 +8,9 @@ trait Multiple
 
     /**
      * @param bool $value
-     * @return AbstractField
+     * @return $this
      */
-    public function multiple(bool $value = true): AbstractField
+    public function multiple(bool $value = true): self
     {
         $this->multiple = $value;
 
@@ -20,9 +18,9 @@ trait Multiple
     }
 
     /**
-     * @return AbstractField
+     * @return $this
      */
-    public function notMultiple(): AbstractField
+    public function notMultiple(): self
     {
         return $this->multiple( false );
     }

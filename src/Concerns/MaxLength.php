@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait MaxLength
 {
     /** @var int */
@@ -10,9 +8,9 @@ trait MaxLength
 
     /**
      * @param int $limit
-     * @return AbstractField
+     * @return $this
      */
-    public function maxLength(int $limit): AbstractField
+    public function maxLength(int $limit): self
     {
         $this->maxLength = $limit;
 

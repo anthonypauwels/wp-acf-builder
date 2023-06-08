@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait Preview
 {
     /** @var string */
@@ -10,9 +8,9 @@ trait Preview
 
     /**
      * @param string $value
-     * @return AbstractField
+     * @return $this
      */
-    public function previewSize(string $value): AbstractField
+    public function previewSize(string $value): self
     {
         $this->previewSize = $value;
 
@@ -20,41 +18,41 @@ trait Preview
     }
 
     /**
-     * @return AbstractField
+     * @return $this
      */
-    public function previewThumbnail(): AbstractField
+    public function previewThumbnail(): self
     {
         return $this->previewSize('thumbnail');
     }
 
     /**
-     * @return AbstractField
+     * @return $this
      */
-    public function previewMedium(): AbstractField
+    public function previewMedium(): self
     {
         return $this->previewSize('medium');
     }
 
     /**
-     * @return AbstractField
+     * @return $this
      */
-    public function previewMediumLarge(): AbstractField
+    public function previewMediumLarge(): self
     {
         return $this->previewSize('medium_large');
     }
 
     /**
-     * @return AbstractField
+     * @return $this
      */
-    public function previewLarge(): AbstractField
+    public function previewLarge(): self
     {
         return $this->previewSize('large');
     }
 
     /**
-     * @return AbstractField
+     * @return $this
      */
-    public function previewFullSize(): AbstractField
+    public function previewFullSize(): self
     {
         return $this->previewSize('full_size');
     }

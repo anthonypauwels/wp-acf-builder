@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait DefaultValue
 {
     /** @var string */
@@ -10,9 +8,9 @@ trait DefaultValue
 
     /**
      * @param string $default
-     * @return AbstractField
+     * @return $this
      */
-    public function default(string $default): AbstractField
+    public function default(string $default): self
     {
         $this->default = $default;
 

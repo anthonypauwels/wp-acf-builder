@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait File
 {
     /** @var int */
@@ -16,9 +14,9 @@ trait File
 
     /**
      * @param ...$mime_types
-     * @return AbstractField
+     * @return $this
      */
-    public function mimeTypes(...$mime_types): AbstractField
+    public function mimeTypes(...$mime_types): self
     {
         $this->mimeTypes = $mime_types;
 
@@ -28,9 +26,9 @@ trait File
     /**
      * @param int $value
      * @param string $unit
-     * @return AbstractField
+     * @return $this
      */
-    public function minSize(int $value, string $unit = 'MB'): AbstractField
+    public function minSize(int $value, string $unit = 'MB'): self
     {
         $this->minSize = $value . trim( $unit );
 
@@ -40,9 +38,9 @@ trait File
     /**
      * @param int $value
      * @param string $unit
-     * @return AbstractField
+     * @return $this
      */
-    public function maxSize(int $value, string $unit = 'MB'): AbstractField
+    public function maxSize(int $value, string $unit = 'MB'): self
     {
         $this->maxSize = $value . trim( $unit );
 
@@ -53,9 +51,9 @@ trait File
      * @param int $min
      * @param int $max
      * @param string $unit
-     * @return AbstractField
+     * @return $this
      */
-    public function size(int $min, int $max = 0, string $unit = 'MB'): AbstractField
+    public function size(int $min, int $max = 0, string $unit = 'MB'): self
     {
         if ( is_string( $max ) ) {
             $unit = $max;

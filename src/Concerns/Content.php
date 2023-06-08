@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait Content
 {
     /** @var string */
@@ -13,9 +11,9 @@ trait Content
 
     /**
      * @param string $content
-     * @return AbstractField
+     * @return $this
      */
-    public function append(string $content): AbstractField
+    public function append(string $content): self
     {
         $this->append = $content;
 
@@ -24,9 +22,9 @@ trait Content
 
     /**
      * @param string $content
-     * @return AbstractField
+     * @return $this
      */
-    public function prepend(string $content): AbstractField
+    public function prepend(string $content): self
     {
         $this->prepend = $content;
 

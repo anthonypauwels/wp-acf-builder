@@ -12,7 +12,7 @@ trait Button
      * @param string $label
      * @return $this
      */
-    public function button(string $label)
+    public function button(string $label):self
     {
         $this->button = $label;
 

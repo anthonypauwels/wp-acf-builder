@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait Number
 {
     /** @var int */
@@ -16,9 +14,9 @@ trait Number
 
     /**
      * @param int $value
-     * @return AbstractField
+     * @return $this
      */
-    public function min(int $value): AbstractField
+    public function min(int $value): self
     {
         $this->min = $value;
 
@@ -27,9 +25,9 @@ trait Number
 
     /**
      * @param int $value
-     * @return AbstractField
+     * @return $this
      */
-    public function max(int $value): AbstractField
+    public function max(int $value): self
     {
         $this->max = $value;
 
@@ -38,9 +36,9 @@ trait Number
 
     /**
      * @param int $value
-     * @return AbstractField
+     * @return $this
      */
-    public function step(int $value): AbstractField
+    public function step(int $value): self
     {
         $this->step = $value;
 

@@ -46,7 +46,7 @@ trait Subfields
      * @param Field $field
      * @return $this
      */
-    public function addField(Field $field)
+    public function addField(Field $field):self
     {
         $this->fields[] = $field;
 
@@ -57,7 +57,7 @@ trait Subfields
      * @param array $fields
      * @return $this
      */
-    public function prependFields(array $fields)
+    public function prependFields(array $fields):self
     {
         $this->fields = array_reverse( $this->fields );
         $fields = array_reverse( $fields );
@@ -75,7 +75,7 @@ trait Subfields
      * @param array $fields
      * @return $this
      */
-    public function appendFields(array $fields)
+    public function appendFields(array $fields):self
     {
         foreach ( $fields as $field ) {
             $this->addField( $field );

@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait Disabled
 {
     /** @var bool */
@@ -10,9 +8,9 @@ trait Disabled
 
     /**
      * @param bool $value
-     * @return AbstractField
+     * @return $this
      */
-    public function disable(bool $value = true): AbstractField
+    public function disable(bool $value = true): self
     {
         $this->disabled = $value;
 
@@ -20,9 +18,9 @@ trait Disabled
     }
 
     /**
-     * @return AbstractField
+     * @return $this
      */
-    public function enable(): AbstractField
+    public function enable(): self
     {
         return $this->disable( false );
     }

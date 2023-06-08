@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait NewLines
 {
     /** @var string */
@@ -10,9 +8,9 @@ trait NewLines
 
     /**
      * @param string $value
-     * @return AbstractField
+     * @return $this
      */
-    public function newLines(string $value): AbstractField
+    public function newLines(string $value): self
     {
         if ( !in_array( $value, ['wpautop', 'br', ''] ) ) {
             $value = 'wpautop';
@@ -24,25 +22,25 @@ trait NewLines
     }
 
     /**
-     * @return AbstractField
+     * @return $this
      */
-    public function paragraphs(): AbstractField
+    public function paragraphs(): self
     {
         return $this->newLines( 'wpautop' );
     }
 
     /**
-     * @return AbstractField
+     * @return $this
      */
-    public function breakLines(): AbstractField
+    public function breakLines(): self
     {
         return $this->newLines( 'br' );
     }
 
     /**
-     * @return AbstractField
+     * @return $this
      */
-    public function noFormatting(): AbstractField
+    public function noFormatting(): self
     {
         return $this->newLines( '' );
     }

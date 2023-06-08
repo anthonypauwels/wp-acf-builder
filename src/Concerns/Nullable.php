@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait Nullable
 {
     /** @var bool */
@@ -10,9 +8,9 @@ trait Nullable
 
     /**
      * @param bool $value
-     * @return AbstractField
+     * @return $this
      */
-    public function nullable(bool $value = true): AbstractField
+    public function nullable(bool $value = true): self
     {
         $this->nullable = $value;
 
@@ -20,9 +18,9 @@ trait Nullable
     }
 
     /**
-     * @return AbstractField
+     * @return $this
      */
-    public function notNullable(): AbstractField
+    public function notNullable(): self
     {
         return $this->nullable( false );
     }

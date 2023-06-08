@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait Wrapper
 {
     /** @var array */
@@ -16,18 +14,18 @@ trait Wrapper
      * @param int $width
      * @param string $class_list
      * @param string $id
-     * @return AbstractField
+     * @return $this
      */
-    public function wrapper(int $width, string $class_list, string $id): AbstractField
+    public function wrapper(int $width, string $class_list, string $id): self
     {
         return $this->wrapperWidth( $width )->wrapperClass( $class_list )->wrapperId( $id );
     }
 
     /**
      * @param int $width
-     * @return AbstractField
+     * @return $this
      */
-    public function wrapperWidth(int $width): AbstractField
+    public function wrapperWidth(int $width): self
     {
         $this->wrapperAttributes['width'] = $width;
 
@@ -36,9 +34,9 @@ trait Wrapper
 
     /**
      * @param string $class_list
-     * @return AbstractField
+     * @return $this
      */
-    public function wrapperClass(string $class_list): AbstractField
+    public function wrapperClass(string $class_list): self
     {
         $this->wrapperAttributes['class'] = $class_list;
 
@@ -47,9 +45,9 @@ trait Wrapper
 
     /**
      * @param string $id
-     * @return AbstractField
+     * @return $this
      */
-    public function wrapperId(string $id): AbstractField
+    public function wrapperId(string $id): self
     {
         $this->wrapperAttributes['id'] = $id;
 

@@ -1,8 +1,6 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
-
 trait Image
 {
     /** @var int */
@@ -19,9 +17,9 @@ trait Image
 
     /**
      * @param int $value
-     * @return AbstractField
+     * @return $this
      */
-    public function minWidth(int $value): AbstractField
+    public function minWidth(int $value): self
     {
         $this->minWidth = $value;
 
@@ -30,9 +28,9 @@ trait Image
 
     /**
      * @param int $value
-     * @return AbstractField
+     * @return $this
      */
-    public function maxWidth(int $value): AbstractField
+    public function maxWidth(int $value): self
     {
         $this->maxWidth = $value;
 
@@ -42,18 +40,18 @@ trait Image
     /**
      * @param int $min
      * @param int $max
-     * @return AbstractField
+     * @return $this
      */
-    public function width(int $min, int $max = 0): AbstractField
+    public function width(int $min, int $max = 0): self
     {
         return $this->minWidth( $min )->maxWidth( $max );
     }
 
     /**
      * @param int $value
-     * @return AbstractField
+     * @return $this
      */
-    public function minHeight(int $value): AbstractField
+    public function minHeight(int $value): self
     {
         $this->minHeight = $value;
 
@@ -62,9 +60,9 @@ trait Image
 
     /**
      * @param int $value
-     * @return AbstractField
+     * @return $this
      */
-    public function maxHeight(int $value): AbstractField
+    public function maxHeight(int $value): self
     {
         $this->maxHeight = $value;
 
@@ -74,9 +72,9 @@ trait Image
     /**
      * @param int $min
      * @param int $max
-     * @return AbstractField
+     * @return $this
      */
-    public function height(int $min, int $max = 0): AbstractField
+    public function height(int $min, int $max = 0): self
     {
         return $this->minHeight( $min )->maxHeight( $max );
     }
