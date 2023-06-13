@@ -6,13 +6,14 @@ use Anthonypauwels\WpAcfBuilder\Contracts\Field;
 use Anthonypauwels\WpAcfBuilder\Concerns\Wrapper;
 use Anthonypauwels\WpAcfBuilder\Concerns\Required;
 use Anthonypauwels\WpAcfBuilder\Concerns\Jsonable;
+use Anthonypauwels\WpAcfBuilder\Concerns\OnFilters;
 use Anthonypauwels\WpAcfBuilder\Concerns\Instruction;
 use Anthonypauwels\WpAcfBuilder\Concerns\Conditional;
 use Anthonypauwels\WpAcfBuilder\Concerns\DefaultValue;
 
 abstract class AbstractField implements Field
 {
-    use Jsonable, Wrapper, Conditional, Required, DefaultValue, Instruction;
+    use Jsonable, Wrapper, Conditional, Required, DefaultValue, Instruction, OnFilters;
 
     /** @var string */
     protected string $key;
@@ -59,50 +60,6 @@ abstract class AbstractField implements Field
     }
 
     /**
-     * @param callable $callback
-     * @return $this
-     */
-    public function onLoad(callable $callback): AbstractField
-    {
-        add_filter('acf/load_field/key=' . $this->getFieldKey(), $callback );
-
-        return $this;
-    }
-
-    /**
-     * @param callable $callback
-     * @return $this
-     */
-    public function onValue(callable $callback): AbstractField
-    {
-        add_filter('acf/load_value/key=' . $this->getFieldKey(), $callback );
-
-        return $this;
-    }
-
-    /**
-     * @param callable $callback
-     * @return $this
-     */
-    public function onUpdate(callable $callback): AbstractField
-    {
-        add_filter('acf/update_field/key=' . $this->getFieldKey(), $callback, 10, 3 );
-
-        return $this;
-    }
-
-    /**
-     * @param callable $callback
-     * @return $this
-     */
-    public function onFormat(callable $callback): AbstractField
-    {
-        add_filter('acf/format_value/key=' . $this->getFieldKey(), $callback, 10, 3 );
-
-        return $this;
-    }
-
-    /**
      * @param string $type
      * @return array
      */
@@ -111,7 +68,7 @@ abstract class AbstractField implements Field
         return array_merge(
             Builder::getParams(),
             $this->params, [
-            'key' => $this->getFieldKey(),
+            'key' => $this->getKey(),
             'name' => $this->name,
             'label' => $this->label,
             'type' => $type,
@@ -128,7 +85,7 @@ abstract class AbstractField implements Field
      *
      * @return string
      */
-    protected function getFieldKey(): string
+    protected function getKey(): string
     {
         return '_acf_field_' . $this->key;
     }

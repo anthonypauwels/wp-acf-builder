@@ -175,17 +175,40 @@ Builder::pageTemplate('templates/contact.php', 'Contact Page', function ( Locati
 
 ### Filters
 
-Fields inherit from `AbstractField` class that provides helpers for ACF filters. For example, you can create a filter where the returned value is transformed into capital case.
+Fields and groups have the `OnFilter` trait that provides helpers for ACF filters. For example, you can create a filter where the returned value is transformed into capital case.
 
 ```php
-Builder::namespace( 'templates', function () {
-    Builder::pageTemplate('home.php', 'Home Page', function ( Location $group ) {
+Builder::pageTemplate('home.php', 'Home Page', function ( Location $group ) {
         $group->text('Title')->onValue( function ( $field ) {
             $field['value'] = strtoupper( $field['value'] );
         
             return $field;
-        } );
+        } ); // end of text field Title
     } );
+```
+
+Or pre-populated a repeater fields :
+
+```php
+BBuilder::pageTemplate('home.php', 'Home Page', function ( Location $group ) {
+    $group->repeater( 'List', function ( Repeater $repeater ) {
+        $repeater->text('Label' );
+        $repeater->text('Value' );
+    } )->onValue( function ( $value ) {
+        // if the value is FALSE or NULL it means the field has never been updated
+        // we don't want to change fields that have already been edited
+        if ( !$value ) {
+            // create a bi dimensional array
+            return array_map( function ( $label ) {
+                return [
+                    '_acf_field_group_home_page_fields_list_label' => $label,
+                    '_acf_field_group_home_page_fields_list_value' => '',
+                ];
+            }, ['First Label', 'Second Label', 'Third Label'] );
+        }
+        
+        return $value;
+    } ); // end of repeater List
 } );
 ```
 

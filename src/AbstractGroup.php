@@ -5,13 +5,14 @@ use Anthonypauwels\WpAcfBuilder\Contracts\Group;
 use Anthonypauwels\WpAcfBuilder\Concerns\Wrapper;
 use Anthonypauwels\WpAcfBuilder\Concerns\Jsonable;
 use Anthonypauwels\WpAcfBuilder\Concerns\Required;
+use Anthonypauwels\WpAcfBuilder\Concerns\OnFilters;
 use Anthonypauwels\WpAcfBuilder\Concerns\Instruction;
 use Anthonypauwels\WpAcfBuilder\Concerns\Conditional;
 use Anthonypauwels\WpAcfBuilder\Concerns\DefaultValue;
 
 abstract class AbstractGroup implements Group
 {
-    use Jsonable, Conditional, Wrapper, Required, DefaultValue, Instruction;
+    use Jsonable, Conditional, Wrapper, Required, DefaultValue, Instruction, OnFilters;
 
     /** @var string */
     protected string $name;
@@ -60,7 +61,7 @@ abstract class AbstractGroup implements Group
     protected function genericExport(string $type): array
     {
         return [
-            'key' => $this->getGroupKey(),
+            'key' => $this->getKey(),
             'name' => $this->name,
             'label' => $this->label,
             'sub_fields' => [],
@@ -78,7 +79,7 @@ abstract class AbstractGroup implements Group
      *
      * @return string
      */
-    protected function getGroupKey(): string
+    protected function getKey(): string
     {
         return '_acf_group_' . $this->key;
     }
