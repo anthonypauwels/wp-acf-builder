@@ -276,7 +276,7 @@ Builder::config( [
 
 You must set default configuration before building fields because the configuration array are merged when `build` method is called.
 
-### API documentation
+## API documentation
 
 WP ACF Builder provides a fluent API for each instances available.
 
@@ -324,10 +324,10 @@ WP ACF Builder provides a fluent API for each instances available.
 ```php
 Builder::build( function () { } );
 Builder::namespace( 'templates', function () { } );
-Builder::group( 'Group label', function ( Group $group ) { } );
-Builder::repeater( 'Repeater label', function ( Repeater $repeater ) { } );
-Builder::flexible( 'Flexible Content label', function ( Flexible $flexible ) { } );
-Builder::location( 'Group Location label', function ( Location $location ) { } );
+Builder::fieldsGroup( 'Group label', function ( Group $group ) { } );
+Builder::repeaterGroup( 'Repeater label', function ( Repeater $repeater ) { } );
+Builder::flexibleContent( 'Flexible Content label', function ( Flexible $flexible ) { } );
+Builder::locationGroup( 'Group Location label', function ( Location $location ) { } );
 Builder::postType( 'Location Post Type', function ( Location $location ) { } );
 Builder::pageTemplate( 'Location Page Template', function ( Location $location ) { } );
 Builder::optionsPage( 'Location Options Page', function ( Location $location ) { } );
