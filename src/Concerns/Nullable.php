@@ -1,6 +1,19 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
+use Anthonypauwels\WpAcfBuilder\Fields\UserField;
+use Anthonypauwels\WpAcfBuilder\Fields\SelectField;
+use Anthonypauwels\WpAcfBuilder\Fields\PageLinkField;
+use Anthonypauwels\WpAcfBuilder\Fields\TaxonomyField;
+use Anthonypauwels\WpAcfBuilder\Fields\ButtonGroupField;
+use Anthonypauwels\WpAcfBuilder\Fields\PostObjectField;
+
+/**
+ * Class Nullable
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait Nullable
 {
     /** @var bool */
@@ -8,7 +21,7 @@ trait Nullable
 
     /**
      * @param bool $value
-     * @return $this
+     * @return ButtonGroupField|Nullable|PageLinkField|PostObjectField|SelectField|TaxonomyField|UserField
      */
     public function nullable(bool $value = true): self
     {
@@ -18,7 +31,7 @@ trait Nullable
     }
 
     /**
-     * @return $this
+     * @return ButtonGroupField|Nullable|PageLinkField|PostObjectField|SelectField|TaxonomyField|UserField
      */
     public function notNullable(): self
     {

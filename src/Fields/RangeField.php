@@ -1,9 +1,16 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
-use Anthonypauwels\WpAcfBuilder\Concerns\Content;
+use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Concerns\Number;
+use Anthonypauwels\WpAcfBuilder\Concerns\Content;
 
+/**
+ * Class RangeField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class RangeField extends AbstractField
 {
     use Content, Number;
@@ -13,15 +20,12 @@ class RangeField extends AbstractField
      */
     public function toArray(): array
     {
-        return array_merge(
-            $this->genericExport('range'),
-            [
-                'append' => $this->append,
-                'prepend' => $this->prepend,
-                'min' => $this->min > 0 ? $this->min : '',
-                'max' => $this->max > 0 ? $this->max : '',
-                'step' => $this->step > 0 ? $this->step : '',
-            ]
-        );
+        return $this->export( Builder::range, [
+            'append' => $this->append,
+            'prepend' => $this->prepend,
+            'min' => $this->min > 0 ? $this->min : '',
+            'max' => $this->max > 0 ? $this->max : '',
+            'step' => $this->step > 0 ? $this->step : '',
+        ] );
     }
 }

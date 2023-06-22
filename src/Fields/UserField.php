@@ -1,9 +1,16 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Concerns\Multiple;
 use Anthonypauwels\WpAcfBuilder\Concerns\Nullable;
 
+/**
+ * Class UserField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class UserField extends AbstractField
 {
     use Nullable, Multiple;
@@ -27,13 +34,10 @@ class UserField extends AbstractField
      */
     public function toArray():array
     {
-        return array_merge(
-            $this->genericExport('user'),
-            [
-                'role' => $this->roles,
-                'allow_null' => (int) $this->nullable,
-                'multiple' => (int) $this->multiple,
-            ]
-        );
+        return $this->export( Builder::user, [
+            'role' => $this->roles,
+            'allow_null' => (int) $this->nullable,
+            'multiple' => (int) $this->multiple,
+        ] );
     }
 }

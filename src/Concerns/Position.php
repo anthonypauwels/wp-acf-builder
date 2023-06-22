@@ -1,6 +1,16 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
+use Anthonypauwels\WpAcfBuilder\Fields\RadioField;
+use Anthonypauwels\WpAcfBuilder\Fields\CheckboxField;
+use Anthonypauwels\WpAcfBuilder\Fields\ButtonGroupField;
+
+/**
+ * Class Position
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait Position
 {
     /** @var string */
@@ -8,7 +18,7 @@ trait Position
 
     /**
      * @param string $value
-     * @return $this
+     * @return RadioField|Position|ButtonGroupField|CheckboxField
      */
     public function layout(string $value): self
     {
@@ -20,7 +30,7 @@ trait Position
     }
 
     /**
-     * @return $this
+     * @return RadioField|Position|ButtonGroupField|CheckboxField
      */
     public function vertical(): self
     {
@@ -28,7 +38,7 @@ trait Position
     }
 
     /**
-     * @return $this
+     * @return RadioField|Position|ButtonGroupField|CheckboxField
      */
     public function horizontal(): self
     {

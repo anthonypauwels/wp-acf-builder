@@ -10,6 +10,12 @@ use Anthonypauwels\WpAcfBuilder\Concerns\Instruction;
 use Anthonypauwels\WpAcfBuilder\Concerns\Conditional;
 use Anthonypauwels\WpAcfBuilder\Concerns\DefaultValue;
 
+/**
+ * Class AbstractGroup
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 abstract class AbstractGroup implements Group
 {
     use Jsonable, Conditional, Wrapper, Required, DefaultValue, Instruction, OnFilters;
@@ -22,6 +28,9 @@ abstract class AbstractGroup implements Group
 
     /** @var string */
     protected string $key;
+
+    /** @var array */
+    protected array $params = [];
 
     /**
      * @param string $label
@@ -55,12 +64,26 @@ abstract class AbstractGroup implements Group
     }
 
     /**
+     * @param string $key
+     * @param mixed $value
+     * @return $this
+     */
+    public function param(string $key, mixed $value): AbstractGroup
+    {
+        $this->params[ $key ] = $value;
+
+        return $this;
+    }
+
+    /**
      * @param string $type
+     * @param array $more_params
      * @return array
      */
-    protected function genericExport(string $type): array
+    protected function export(string $type, array $more_params = []): array
     {
-        return [
+        return array_merge(
+            $this->params, [
             'key' => $this->getKey(),
             'name' => $this->name,
             'label' => $this->label,
@@ -71,7 +94,9 @@ abstract class AbstractGroup implements Group
             'conditional_logic' => empty( $this->conditionalLogic ) ? 0 : $this->conditionalLogic,
             'wrapper' => $this->wrapperAttributes,
             'default_value' => $this->default,
-        ];
+        ], Builder::getFieldConfig( $type ),
+            $more_params
+        );
     }
 
     /**

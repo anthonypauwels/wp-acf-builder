@@ -1,9 +1,16 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Concerns\Message;
 use Anthonypauwels\WpAcfBuilder\Concerns\NewLines;
 
+/**
+ * Class MessageField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class MessageField extends AbstractField
 {
     use Message, NewLines;
@@ -35,13 +42,10 @@ class MessageField extends AbstractField
      */
     public function toArray():array
     {
-        return array_merge(
-            $this->genericExport('message'),
-            [
-                'message' => $this->message,
-                'new_lines' => $this->newLines,
-                'esc_html' => (int) $this->escHtml,
-            ]
-        );
+        return $this->export( Builder::message, [
+            'message' => $this->message,
+            'new_lines' => $this->newLines,
+            'esc_html' => (int) $this->escHtml,
+        ] );
     }
 }

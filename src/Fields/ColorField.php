@@ -1,6 +1,14 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
+
+/**
+ * Class ColorField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class ColorField extends AbstractField
 {
     /** @var bool */
@@ -62,12 +70,9 @@ class ColorField extends AbstractField
      */
     public function toArray():array
     {
-        return array_merge(
-            $this->genericExport('color_picker'),
-            [
-                'enable_opacity' => (int) $this->enableOpacity,
-                'return_format' => $this->format,
-            ]
-        );
+        return $this->export( Builder::color, [
+            'enable_opacity' => (int) $this->enableOpacity,
+            'return_format' => $this->format,
+        ] );
     }
 }

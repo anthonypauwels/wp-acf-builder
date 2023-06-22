@@ -1,6 +1,15 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
+use Anthonypauwels\WpAcfBuilder\Fields\BooleanField;
+use Anthonypauwels\WpAcfBuilder\Fields\MessageField;
+
+/**
+ * Class Message
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait Message
 {
     /** @var string */
@@ -8,7 +17,7 @@ trait Message
 
     /**
      * @param string $content
-     * @return $this
+     * @return MessageField|Message|BooleanField
      */
     public function message(string $content): self
     {

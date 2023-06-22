@@ -1,8 +1,15 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Concerns\MinMax;
 
+/**
+ * Class RelationshipField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class RelationshipField extends AbstractField
 {
     use MinMax;
@@ -173,16 +180,13 @@ class RelationshipField extends AbstractField
      */
     public function toArray(): array
     {
-        return array_merge(
-            $this->genericExport('relationship'),
-            [
-                'post_type' => !empty( $this->postsTypes ) ? $this->postsTypes : '',
-                'taxonomy' => !empty( $this->taxonomies ) ? $this->taxonomies : '',
-                'filters' => array_keys( $this->filters ),
-                'min' => $this->min,
-                'max' => $this->max,
-                'return_format' => $this->format,
-            ]
-        );
+        return $this->export( Builder::relationship, [
+            'post_type' => !empty( $this->postsTypes ) ? $this->postsTypes : '',
+            'taxonomy' => !empty( $this->taxonomies ) ? $this->taxonomies : '',
+            'filters' => array_keys( $this->filters ),
+            'min' => $this->min,
+            'max' => $this->max,
+            'return_format' => $this->format,
+        ] );
     }
 }

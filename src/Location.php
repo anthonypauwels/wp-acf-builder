@@ -6,6 +6,12 @@ use Anthonypauwels\WpAcfBuilder\Contracts\Group;
 use Anthonypauwels\WpAcfBuilder\Concerns\Jsonable;
 use Anthonypauwels\WpAcfBuilder\Concerns\Subfields;
 
+/**
+ * Class Location
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class Location implements Group
 {
     use Subfields, Jsonable;
@@ -475,7 +481,7 @@ class Location implements Group
      * @param string $boolean
      * @return $this
      */
-    public function options(string $value = 'acf-options-common', string $boolean = 'and'): Location
+    public function optionsPage(string $value = 'acf-options-common', string $boolean = 'and'): Location
     {
         return $this->showIf('options_page', '==', $value, $boolean );
     }
@@ -483,7 +489,7 @@ class Location implements Group
     /**
      * Build and initialise the group
      */
-    public function build()
+    public function build(): void
     {
         if ( function_exists('acf_add_local_field_group') ) {
             acf_add_local_field_group( $this->toArray() );
@@ -495,10 +501,12 @@ class Location implements Group
      */
     public function toArray():array
     {
-        $payload = [
+        return array_merge( [
             'key' => $this->key,
             'title' => $this->name,
-            'fields' => [],
+            'fields' => array_map( function (Field $field) {
+                return $field->toArray();
+            }, $this->fields ),
             'location' => $this->location,
             'menu_order' => $this->menuOrder,
             'position' => $this->position,
@@ -506,13 +514,6 @@ class Location implements Group
             'label_placement' => $this->labelPlacement,
             'instruction_placement' => $this->instructionPlacement,
             'hide_on_screen' => $this->hideOnScreen,
-        ];
-
-        /** @var Field $field */
-        foreach ( $this->fields as $field ) {
-            $payload['fields'][] = $field->toArray();
-        }
-
-        return $payload;
+        ], Builder::getFieldConfig( Builder::location ) );
     }
 }

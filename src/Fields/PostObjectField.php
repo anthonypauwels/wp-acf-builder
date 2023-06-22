@@ -1,9 +1,16 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Concerns\Multiple;
 use Anthonypauwels\WpAcfBuilder\Concerns\Nullable;
 
+/**
+ * Class PostObjectField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class PostObjectField extends AbstractField
 {
     use Nullable, Multiple;
@@ -95,15 +102,12 @@ class PostObjectField extends AbstractField
      */
     public function toArray(): array
     {
-        return array_merge(
-            $this->genericExport('post_object'),
-            [
-                'post_type' => !empty( $this->postsTypes ) ? $this->postsTypes : '',
-                'taxonomy' => !empty( $this->taxonomies ) ? $this->taxonomies : '',
-                'allow_null' => (int) $this->nullable,
-                'multiple' => (int) $this->multiple,
-                'return_format' => $this->format,
-            ]
-        );
+        return $this->export( Builder::postObject, [
+            'post_type' => !empty( $this->postsTypes ) ? $this->postsTypes : '',
+            'taxonomy' => !empty( $this->taxonomies ) ? $this->taxonomies : '',
+            'allow_null' => (int) $this->nullable,
+            'multiple' => (int) $this->multiple,
+            'return_format' => $this->format,
+        ] );
     }
 }

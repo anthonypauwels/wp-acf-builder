@@ -1,8 +1,15 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Concerns\Message;
 
+/**
+ * Class BooleanField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class BooleanField extends AbstractField
 {
     use Message;
@@ -12,11 +19,8 @@ class BooleanField extends AbstractField
      */
     public function toArray():array
     {
-        return array_merge(
-            $this->genericExport('true_false'),
-            [
-                'message' => $this->message,
-            ]
-        );
+        return $this->export( Builder::boolean, [
+            'message' => $this->message,
+        ] );
     }
 }

@@ -1,6 +1,14 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
+
+/**
+ * Class DateTimeField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class DateTimeField extends DateField
 {
     /** @var string */
@@ -14,13 +22,10 @@ class DateTimeField extends DateField
      */
     public function toArray():array
     {
-        return array_merge(
-            $this->genericExport('date_time_picker'),
-            [
-                'display_format' => $this->displayFormat,
-                'return_format' => $this->returnFormat,
-                'first_day' => $this->weekStartsOn,
-            ]
-        );
+        return $this->export( Builder::dateTime, [
+            'display_format' => $this->displayFormat,
+            'return_format' => $this->returnFormat,
+            'first_day' => $this->weekStartsOn,
+        ] );
     }
 }

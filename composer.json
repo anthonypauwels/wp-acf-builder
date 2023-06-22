@@ -11,12 +11,11 @@
         {
             "name": "Anthony Pauwels",
             "email": "hello@anthonypauwels.be",
-            "homepage": "https://anthonypauwels.be/"
+            "homepage": "https://github.com/anthonypauwels/wp-acf-builder"
         }
     ],
     "require": {
-        "php": "^8.0",
-        "ext-iconv": "*"
+        "php": "^8.0"
     },
     "license": "MIT",
     "autoload": {

@@ -1,11 +1,20 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
+use Anthonypauwels\WpAcfBuilder\AbstractGroup;
+use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
+
+/**
+ * Class OnFilters
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait OnFilters
 {
     /**
      * @param callable $callback
-     * @return $this
+     * @return OnFilters|AbstractGroup|AbstractField
      */
     public function onLoad(callable $callback): self
     {
@@ -16,7 +25,7 @@ trait OnFilters
 
     /**
      * @param callable $callback
-     * @return $this
+     * @return OnFilters|AbstractGroup|AbstractField
      */
     public function onValue(callable $callback): self
     {
@@ -27,7 +36,7 @@ trait OnFilters
 
     /**
      * @param callable $callback
-     * @return $this
+     * @return OnFilters|AbstractGroup|AbstractField
      */
     public function onUpdate(callable $callback): self
     {
@@ -38,7 +47,7 @@ trait OnFilters
 
     /**
      * @param callable $callback
-     * @return $this
+     * @return OnFilters|AbstractGroup|AbstractField
      */
     public function onFormat(callable $callback): self
     {

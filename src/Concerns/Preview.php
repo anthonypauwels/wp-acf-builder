@@ -1,6 +1,16 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
+use Anthonypauwels\WpAcfBuilder\Fields\FileField;
+use Anthonypauwels\WpAcfBuilder\Fields\ImageField;
+use Anthonypauwels\WpAcfBuilder\Fields\GalleryField;
+
+/**
+ * Class Preview
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait Preview
 {
     /** @var string */
@@ -8,7 +18,7 @@ trait Preview
 
     /**
      * @param string $value
-     * @return $this
+     * @return FileField|Preview|GalleryField|ImageField
      */
     public function previewSize(string $value): self
     {
@@ -18,7 +28,7 @@ trait Preview
     }
 
     /**
-     * @return $this
+     * @return FileField|Preview|GalleryField|ImageField
      */
     public function previewThumbnail(): self
     {
@@ -26,7 +36,7 @@ trait Preview
     }
 
     /**
-     * @return $this
+     * @return FileField|Preview|GalleryField|ImageField
      */
     public function previewMedium(): self
     {
@@ -34,7 +44,7 @@ trait Preview
     }
 
     /**
-     * @return $this
+     * @return FileField|Preview|GalleryField|ImageField
      */
     public function previewMediumLarge(): self
     {
@@ -42,7 +52,7 @@ trait Preview
     }
 
     /**
-     * @return $this
+     * @return FileField|Preview|GalleryField|ImageField
      */
     public function previewLarge(): self
     {
@@ -50,7 +60,7 @@ trait Preview
     }
 
     /**
-     * @return $this
+     * @return FileField|Preview|GalleryField|ImageField
      */
     public function previewFullSize(): self
     {

@@ -1,8 +1,15 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
-use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
+use Anthonypauwels\WpAcfBuilder\Fields\TextField;
+use Anthonypauwels\WpAcfBuilder\Fields\TextareaField;
 
+/**
+ * Class ReadOnly
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait ReadOnly
 {
     /** @var bool */
@@ -10,7 +17,7 @@ trait ReadOnly
 
     /**
      * @param bool $value
-     * @return $this
+     * @return TextareaField|ReadOnly|TextField
      */
     public function readOnly(bool $value = true): self
     {
@@ -20,7 +27,7 @@ trait ReadOnly
     }
 
     /**
-     * @return $this
+     * @return TextareaField|ReadOnly|TextField
      */
     public function notReadOnly(): self
     {

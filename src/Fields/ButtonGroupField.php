@@ -1,10 +1,17 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Concerns\Choices;
 use Anthonypauwels\WpAcfBuilder\Concerns\Nullable;
 use Anthonypauwels\WpAcfBuilder\Concerns\Position;
 
+/**
+ * Class ButtonGroupField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class ButtonGroupField extends AbstractField
 {
     use Choices, Nullable, Position;
@@ -14,13 +21,10 @@ class ButtonGroupField extends AbstractField
      */
     public function toArray():array
     {
-        return array_merge(
-            $this->genericExport('button_group'),
-            [
-                'choices' => $this->choices,
-                'layout' => $this->layout,
-                'allow_null' => (int) $this->nullable,
-            ]
-        );
+        return $this->export( Builder::buttonGroup, [
+            'choices' => $this->choices,
+            'layout' => $this->layout,
+            'allow_null' => (int) $this->nullable,
+        ] );
     }
 }

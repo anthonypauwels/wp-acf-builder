@@ -1,6 +1,14 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
+
+/**
+ * Class Wysiwyg
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class WysiwygField extends AbstractField
 {
     /** @var string */
@@ -102,13 +110,10 @@ class WysiwygField extends AbstractField
      */
     public function toArray():array
     {
-        return array_merge(
-            $this->genericExport('wysiwyg'),
-            [
-                'tabs' => $this->tabs,
-                'toolbar' => $this->toolbar,
-                'media_upload' => (int) $this->mediaUpload,
-            ]
-        );
+        return $this->export( Builder::wysiwyg, [
+            'tabs' => $this->tabs,
+            'toolbar' => $this->toolbar,
+            'media_upload' => (int) $this->mediaUpload,
+        ] );
     }
 }

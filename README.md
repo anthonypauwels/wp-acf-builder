@@ -62,10 +62,17 @@ $home_group = Builder::pageTemplate('templates/home.php', 'Home Page', function 
 Builder class provides methods to build fields group for Posts Types, Options Pages and Page Template. Location group also provides helpers methods to show them using conditional parameters :
 
 ```php
+// Create fields for a post type
 Builder::postType('post', 'Post Field', function ( Location $group ) {
     // ...
     
     $group->postType('another_post_type', 'or'); // second parameter is optional and can be `or` or `and`
+} );
+
+// Create fields for an options page
+Builder::optionsPage('Options', function ( Location $group ) {
+    $group->image('Logo')->returnUrl();
+    $group->text('Copyright');
 } );
 ```
 
@@ -96,6 +103,8 @@ Builder::build( function () {
     Builder::pageTemplate('templates/home.php', 'Home Page', function ( Location $group ) {
         // ...
     } );
+    
+    // work also with optionsPage and postType methods
 } );
 ```
 
@@ -175,7 +184,7 @@ Builder::pageTemplate('templates/contact.php', 'Contact Page', function ( Locati
 
 ### Filters
 
-Fields and groups have the `OnFilter` trait that provides helpers for ACF filters. For example, you can create a filter where the returned value is transformed into capital case.
+Fields and groups provides helpers methods for ACF filters. For example, you can create a filter where the returned value is transformed into capital case.
 
 ```php
 Builder::pageTemplate('home.php', 'Home Page', function ( Location $group ) {
@@ -190,7 +199,7 @@ Builder::pageTemplate('home.php', 'Home Page', function ( Location $group ) {
 Or pre-populated a repeater fields :
 
 ```php
-BBuilder::pageTemplate('home.php', 'Home Page', function ( Location $group ) {
+Builder::pageTemplate('home.php', 'Home Page', function ( Location $group ) {
     $group->repeater( 'List', function ( Repeater $repeater ) {
         $repeater->text('Label' );
         $repeater->text('Value' );
@@ -214,9 +223,9 @@ BBuilder::pageTemplate('home.php', 'Home Page', function ( Location $group ) {
 
 For more information about ACF filters, check the Advanced Custom Fields [documentation about Filters](https://www.advancedcustomfields.com/resources/#filters).
 
-### Params and default params
+### Raw parameters
 
-If you want to set an ACF parameters not available on the package, you can use the `param` method on each field. Imagine you want to use WPML with your ACF fields,
+If you want to set an ACF parameters not available on the package, you can use the `param` method on fields. Imagine that you want to use WPML with your ACF fields,
 you can set a value to `wpml_cf_preferences` like this way :
 
 ```php
@@ -227,16 +236,45 @@ function ( Group $group ) {
 // ...
 ```
 
-But setting a default parameter to all fields can be long and daunting, so you can also pass a default parameter to the `Builder`. 
-This way, each field will be created using this parameter. If the parameter is also defined inside the field, this value will prevail :
+### Default configuration
+
+Configure a default configuration to all fields can be long and daunting, so you can also use a `config` method on the `Builder` that accept an array as parameter. 
+
+The Builder has a bunch of new methods and constants to help to you to configure every field :
 
 ```php
-// ...
-Builder::param('wpml_cf_preferences', 2 ); // every field will have the "wpml_cf_preferences" set to 2 except if the field overwrite it
-// ...
+Builder::config( [
+    // define a config value for all fields, like using `param` method
+    Builder::all => [
+        'wpml_cf_preferences' => 2,
+    ],
+
+    // define config for a field using the building methods
+    Builder::text => Builder::text()->placeholder('Put some content here'),
+    
+    // methods can be chained
+    Builder::wysiwyg => Builder::wysiwyg()->visualOnly()->basicToolbar()->required(),
+
+    // raw parameters works too
+    Builder::email => Builder::email()->param('wpml_cf_preferences', 0),
+
+    // you can also pass the field type string as key
+    'url' => Builder::url()->placeholder('https://...'),
+
+    // or a configuration array as value
+    Builder::file => [
+        'return_format' => 'id'
+    ],
+
+    // you can set your Google Map api key here
+    Builder::googleMap => Builder::googleMap()->api('your_api_key_here', 'your_client_ID_here'),
+
+    // works with repeater, group, location, flexible and layout too
+    Builder::repeater => Builder::repeater()->max( 10 )->param( 'wpml_cf_preferences', 0 ),
+] );
 ```
 
-You must set default parameters before building fields.
+You must set default configuration before building fields because the configuration array are merged when `build` method is called.
 
 ### API documentation
 
@@ -292,7 +330,7 @@ Builder::flexible( 'Flexible Content label', function ( Flexible $flexible ) { }
 Builder::location( 'Group Location label', function ( Location $location ) { } );
 Builder::postType( 'Location Post Type', function ( Location $location ) { } );
 Builder::pageTemplate( 'Location Page Template', function ( Location $location ) { } );
-Builder::options( 'Location Options Page', function ( Location $location ) { } );
+Builder::optionsPage( 'Location Options Page', function ( Location $location ) { } );
 ```
 
 #### Subfields
@@ -403,7 +441,7 @@ $location->menu('all', 'and');
 $location->menuItem('all', 'and');
 $location->widget('all', 'and');
 $location->userRole('administrator', 'and');
-$location->options('acf-options-common', 'and');
+$location->optionsPage('acf-options-common', 'and');
 $location->build();
 ```
 
@@ -580,6 +618,9 @@ $group->googleMap(/* ... */)->longitude(144.96328);
 $group->googleMap(/* ... */)->coordinates(-37.81411, 144.96328);
 $group->googleMap(/* ... */)->zoom(14);
 $group->googleMap(/* ... */)->height(400);
+
+// set your Google Map api key and client ID here. Works for all GoogleMapField, you can set it globally via the config
+$group->googleMap(/* ... */)->api("your_api_key", "your_client_id");
 ```
 
 #### ImageField

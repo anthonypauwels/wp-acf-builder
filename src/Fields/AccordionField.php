@@ -1,6 +1,14 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
+
+/**
+ * Class AccordionField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class AccordionField extends AbstractField
 {
     /** @var bool */
@@ -57,18 +65,13 @@ class AccordionField extends AbstractField
     }
 
     /**
-     *
-     *
      * @return array
      */
     public function toArray(): array
     {
-        return array_merge(
-            $this->genericExport('accordion'),
-            [
-                'open' => (int) $this->open,
-                'multi_expand' => (int) $this->multiExpand,
-            ]
-        );
+        return $this->export( Builder::accordion, [
+            'open' => (int) $this->open,
+            'multi_expand' => (int) $this->multiExpand,
+        ] );
     }
 }

@@ -1,6 +1,14 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
+
+/**
+ * Class GoogleMapField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class GoogleMapField extends AbstractField
 {
     /** @var float */
@@ -76,18 +84,32 @@ class GoogleMapField extends AbstractField
     }
 
     /**
+     * @param string $api_key
+     * @param string $client_id
+     * @return $this
+     */
+    public function api(string $api_key, string $client_id = ''): GoogleMapField
+    {
+        add_filter('acf/fields/google_map/api', function ( $args ) use ( $api_key, $client_id ) {
+            $args['key'] = $api_key;
+            $args['client'] = $client_id;
+
+            return $args;
+        } );
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function toArray():array
     {
-        return array_merge(
-            $this->genericExport('google_map'),
-            [
-                'center_lat' => $this->latitude,
-                'cent_lng' => $this->longitude,
-                'zoom' => $this->zoom,
-                'height' => $this->height,
-            ]
-        );
+        return $this->export( Builder::googleMap, [
+            'center_lat' => $this->latitude,
+            'cent_lng' => $this->longitude,
+            'zoom' => $this->zoom,
+            'height' => $this->height,
+        ] );
     }
 }

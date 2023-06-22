@@ -1,6 +1,15 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
+use Anthonypauwels\WpAcfBuilder\Fields\ImageField;
+use Anthonypauwels\WpAcfBuilder\Fields\GalleryField;
+
+/**
+ * Class Image
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait Image
 {
     /** @var int */
@@ -17,7 +26,7 @@ trait Image
 
     /**
      * @param int $value
-     * @return $this
+     * @return ImageField|Image|GalleryField
      */
     public function minWidth(int $value): self
     {
@@ -28,7 +37,7 @@ trait Image
 
     /**
      * @param int $value
-     * @return $this
+     * @return ImageField|Image|GalleryField
      */
     public function maxWidth(int $value): self
     {
@@ -40,7 +49,7 @@ trait Image
     /**
      * @param int $min
      * @param int $max
-     * @return $this
+     * @return ImageField|Image|GalleryField
      */
     public function width(int $min, int $max = 0): self
     {
@@ -49,7 +58,7 @@ trait Image
 
     /**
      * @param int $value
-     * @return $this
+     * @return ImageField|Image|GalleryField
      */
     public function minHeight(int $value): self
     {
@@ -60,7 +69,7 @@ trait Image
 
     /**
      * @param int $value
-     * @return $this
+     * @return ImageField|Image|GalleryField
      */
     public function maxHeight(int $value): self
     {
@@ -72,7 +81,7 @@ trait Image
     /**
      * @param int $min
      * @param int $max
-     * @return $this
+     * @return ImageField|Image|GalleryField
      */
     public function height(int $min, int $max = 0): self
     {

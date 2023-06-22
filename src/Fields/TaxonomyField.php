@@ -1,8 +1,15 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Concerns\Nullable;
 
+/**
+ * Class TaxonomyField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class TaxonomyField extends AbstractField
 {
     use Nullable;
@@ -172,16 +179,13 @@ class TaxonomyField extends AbstractField
      */
     public function toArray(): array
     {
-        return array_merge(
-            $this->genericExport('taxonomy'),
-            [
-                'taxonomy' => $this->taxonomy,
-                'field_type' => $this->appearance,
-                'allow_null' => (int) $this->nullable,
-                'load_save_terms' => (int) $this->saveTerms,
-                'return_format' => $this->format,
-                'add_term' => (int) $this->allowAddTerm,
-            ]
-        );
+        return $this->export( Builder::taxonomy, [
+            'taxonomy' => $this->taxonomy,
+            'field_type' => $this->appearance,
+            'allow_null' => (int) $this->nullable,
+            'load_save_terms' => (int) $this->saveTerms,
+            'return_format' => $this->format,
+            'add_term' => (int) $this->allowAddTerm,
+        ] );
     }
 }

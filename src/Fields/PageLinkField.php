@@ -1,9 +1,16 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Concerns\Multiple;
 use Anthonypauwels\WpAcfBuilder\Concerns\Nullable;
 
+/**
+ * Class PageLinkField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class PageLinkField extends AbstractField
 {
     use Nullable, Multiple;
@@ -41,14 +48,11 @@ class PageLinkField extends AbstractField
      */
     public function toArray():array
     {
-        return array_merge(
-            $this->genericExport('page_link'),
-            [
-                'post_type' => $this->postType,
-                'taxonomy' => $this->taxonomy,
-                'allow_null' => (int) $this->nullable,
-                'multiple' => (int) $this->multiple,
-            ]
-        );
+        return $this->export( Builder::pageLink, [
+            'post_type' => $this->postType,
+            'taxonomy' => $this->taxonomy,
+            'allow_null' => (int) $this->nullable,
+            'multiple' => (int) $this->multiple,
+        ] );
     }
 }

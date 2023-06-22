@@ -3,6 +3,8 @@ namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
 use Closure;
 use Anthonypauwels\WpAcfBuilder\Group;
+use Anthonypauwels\WpAcfBuilder\Layout;
+use Anthonypauwels\WpAcfBuilder\Location;
 use Anthonypauwels\WpAcfBuilder\Flexible;
 use Anthonypauwels\WpAcfBuilder\Repeater;
 use Anthonypauwels\WpAcfBuilder\Contracts\Field;
@@ -37,6 +39,12 @@ use Anthonypauwels\WpAcfBuilder\Fields\PostObjectField;
 use Anthonypauwels\WpAcfBuilder\Fields\ButtonGroupField;
 use Anthonypauwels\WpAcfBuilder\Fields\RelationshipField;
 
+/**
+ * Class Subfields
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait Subfields
 {
     /** @var array */
@@ -44,7 +52,7 @@ trait Subfields
 
     /**
      * @param Field $field
-     * @return $this
+     * @return Repeater|Subfields|Group|Layout|Location
      */
     public function addField(Field $field):self
     {
@@ -55,7 +63,7 @@ trait Subfields
 
     /**
      * @param array $fields
-     * @return $this
+     * @return Repeater|Subfields|Group|Layout|Location
      */
     public function prependFields(array $fields):self
     {
@@ -73,7 +81,7 @@ trait Subfields
 
     /**
      * @param array $fields
-     * @return $this
+     * @return Repeater|Subfields|Group|Layout|Location
      */
     public function appendFields(array $fields):self
     {

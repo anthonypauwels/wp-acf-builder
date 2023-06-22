@@ -1,6 +1,17 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
+use Anthonypauwels\WpAcfBuilder\Flexible;
+use Anthonypauwels\WpAcfBuilder\Repeater;
+use Anthonypauwels\WpAcfBuilder\Fields\GalleryField;
+use Anthonypauwels\WpAcfBuilder\Fields\RelationshipField;
+
+/**
+ * Class MinMax
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait MinMax
 {
     /** @var int */
@@ -11,7 +22,7 @@ trait MinMax
 
     /**
      * @param int $value
-     * @return $this
+     * @return Flexible|MinMax|GalleryField|RelationshipField|Repeater
      */
     public function min(int $value):self
     {
@@ -22,7 +33,7 @@ trait MinMax
 
     /**
      * @param int $value
-     * @return $this
+     * @return Flexible|MinMax|GalleryField|RelationshipField|Repeater
      */
     public function max(int $value):self
     {

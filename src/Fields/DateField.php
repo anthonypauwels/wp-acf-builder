@@ -1,6 +1,14 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
+
+/**
+ * Class DateField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class DateField extends AbstractField
 {
     /** @var string */
@@ -108,13 +116,10 @@ class DateField extends AbstractField
      */
     public function toArray():array
     {
-        return array_merge(
-            $this->genericExport('date_picker'),
-            [
-                'display_format' => $this->displayFormat,
-                'return_format' => $this->returnFormat,
-                'first_day' => $this->weekStartsOn,
-            ]
-        );
+        return $this->export( Builder::date, [
+            'display_format' => $this->displayFormat,
+            'return_format' => $this->returnFormat,
+            'first_day' => $this->weekStartsOn,
+        ] );
     }
 }

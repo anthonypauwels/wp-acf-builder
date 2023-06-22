@@ -1,6 +1,15 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
+use Anthonypauwels\WpAcfBuilder\Fields\MessageField;
+use Anthonypauwels\WpAcfBuilder\Fields\TextareaField;
+
+/**
+ * Class NewLines
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait NewLines
 {
     /** @var string */
@@ -8,7 +17,7 @@ trait NewLines
 
     /**
      * @param string $value
-     * @return $this
+     * @return MessageField|NewLines|TextareaField
      */
     public function newLines(string $value): self
     {
@@ -22,7 +31,7 @@ trait NewLines
     }
 
     /**
-     * @return $this
+     * @return MessageField|NewLines|TextareaField
      */
     public function paragraphs(): self
     {
@@ -30,7 +39,7 @@ trait NewLines
     }
 
     /**
-     * @return $this
+     * @return MessageField|NewLines|TextareaField
      */
     public function breakLines(): self
     {
@@ -38,7 +47,7 @@ trait NewLines
     }
 
     /**
-     * @return $this
+     * @return MessageField|NewLines|TextareaField
      */
     public function noFormatting(): self
     {

@@ -1,9 +1,16 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Concerns\Content;
 use Anthonypauwels\WpAcfBuilder\Concerns\Placeholder;
 
+/**
+ * Class PasswordField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class PasswordField extends AbstractField
 {
     use Placeholder, Content;
@@ -13,13 +20,10 @@ class PasswordField extends AbstractField
      */
     public function toArray():array
     {
-        return array_merge(
-            $this->genericExport('password'),
-            [
-                'placeholder' => $this->placeholder,
-                'append' => $this->append,
-                'prepend' => $this->prepend,
-            ]
-        );
+        return $this->export( Builder::password, [
+            'placeholder' => $this->placeholder,
+            'append' => $this->append,
+            'prepend' => $this->prepend,
+        ] );
     }
 }

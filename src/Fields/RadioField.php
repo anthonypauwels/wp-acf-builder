@@ -1,9 +1,16 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Concerns\Choices;
 use Anthonypauwels\WpAcfBuilder\Concerns\Position;
 
+/**
+ * Class RadioField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class RadioField extends AbstractField
 {
     use Choices, Position;
@@ -57,14 +64,11 @@ class RadioField extends AbstractField
      */
     public function toArray(): array
     {
-        return array_merge(
-            $this->genericExport('radio'),
-            [
-                'choices' => $this->choices,
-                'other_choice' => (int) $this->allowOtherChoice,
-                'save_other_choice' => (int) $this->saveOtherChoice,
-                'layout' => $this->layout,
-            ]
-        );
+        return $this->export( Builder::radio, [
+            'choices' => $this->choices,
+            'other_choice' => (int) $this->allowOtherChoice,
+            'save_other_choice' => (int) $this->saveOtherChoice,
+            'layout' => $this->layout,
+        ] );
     }
 }

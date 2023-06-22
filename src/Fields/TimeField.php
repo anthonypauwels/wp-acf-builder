@@ -1,6 +1,14 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
+
+/**
+ * Class TimeField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class TimeField extends AbstractField
 {
     /** @var string */
@@ -36,12 +44,9 @@ class TimeField extends AbstractField
      */
     public function toArray():array
     {
-        return array_merge(
-            $this->genericExport('time_picker'),
-            [
-                'display_format' => $this->displayFormat,
-                'return_format' => $this->returnFormat,
-            ]
-        );
+        return $this->export( Builder::time, [
+            'display_format' => $this->displayFormat,
+            'return_format' => $this->returnFormat,
+        ] );
     }
 }

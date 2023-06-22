@@ -1,6 +1,15 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
+use Anthonypauwels\WpAcfBuilder\AbstractGroup;
+use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
+
+/**
+ * Class Wrapper
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait Wrapper
 {
     /** @var array */
@@ -14,7 +23,7 @@ trait Wrapper
      * @param int $width
      * @param string $class_list
      * @param string $id
-     * @return $this
+     * @return Wrapper|AbstractGroup|AbstractField
      */
     public function wrapper(int $width, string $class_list, string $id): self
     {
@@ -34,7 +43,7 @@ trait Wrapper
 
     /**
      * @param string $class_list
-     * @return $this
+     * @return Wrapper|AbstractGroup|AbstractField
      */
     public function wrapperClass(string $class_list): self
     {
@@ -45,7 +54,7 @@ trait Wrapper
 
     /**
      * @param string $id
-     * @return $this
+     * @return Wrapper|AbstractGroup|AbstractField
      */
     public function wrapperId(string $id): self
     {

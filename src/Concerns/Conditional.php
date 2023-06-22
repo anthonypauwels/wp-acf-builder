@@ -1,6 +1,15 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
+use Anthonypauwels\WpAcfBuilder\AbstractGroup;
+use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
+
+/**
+ * Class Conditional
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait Conditional
 {
     /** @var array */
@@ -11,7 +20,7 @@ trait Conditional
      * @param string $operator
      * @param string|null $value
      * @param string $boolean
-     * @return $this
+     * @return Conditional|AbstractGroup|AbstractField
      */
     public function showIf(string $param, string $operator, string $value = null, string $boolean = 'and'): self
     {
@@ -55,7 +64,7 @@ trait Conditional
      * @param string $param
      * @param string $operator
      * @param string|null $value
-     * @return $this
+     * @return Conditional|AbstractGroup|AbstractField
      */
     public function andShowIf(string $param, string $operator, string $value = null): self
     {
@@ -66,7 +75,7 @@ trait Conditional
      * @param string $param
      * @param string $operator
      * @param string|null $value
-     * @return $this
+     * @return Conditional|AbstractGroup|AbstractField
      */
     public function orShowIf(string $param, string $operator, string $value = null): self
     {

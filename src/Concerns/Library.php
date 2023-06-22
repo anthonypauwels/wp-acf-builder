@@ -1,6 +1,16 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
+use Anthonypauwels\WpAcfBuilder\Fields\FileField;
+use Anthonypauwels\WpAcfBuilder\Fields\ImageField;
+use Anthonypauwels\WpAcfBuilder\Fields\GalleryField;
+
+/**
+ * Class Library
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait Library
 {
     /** @var string */
@@ -8,7 +18,7 @@ trait Library
 
     /**
      * @param string $value
-     * @return $this
+     * @return FileField|Library|GalleryField|ImageField
      */
     public function restrictLibrary(string $value): self
     {
@@ -20,7 +30,7 @@ trait Library
     }
 
     /**
-     * @return $this
+     * @return FileField|Library|GalleryField|ImageField
      */
     public function showAll(): self
     {
@@ -28,7 +38,7 @@ trait Library
     }
 
     /**
-     * @return $this
+     * @return FileField|Library|GalleryField|ImageField
      */
     public function onlyUploaded(): self
     {

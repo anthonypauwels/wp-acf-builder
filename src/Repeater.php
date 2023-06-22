@@ -7,6 +7,12 @@ use Anthonypauwels\WpAcfBuilder\Concerns\MinMax;
 use Anthonypauwels\WpAcfBuilder\Concerns\Subfields;
 use Anthonypauwels\WpAcfBuilder\Concerns\Layoutable;
 
+/**
+ * Class Repeater
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class Repeater extends AbstractGroup implements Field
 {
     use Button, MinMax, Subfields, Layoutable;
@@ -18,19 +24,14 @@ class Repeater extends AbstractGroup implements Field
      */
     public function toArray(): array
     {
-        $payload = array_merge(
-            $this->genericExport('repeater'),
-            [
-                'layout' => $this->layout,
-                'button_label' => $this->button,
-            ]
-        );
-
-        /** @var Field $field */
-        foreach ( $this->fields as $field ) {
-            $payload['sub_fields'][] = $field->toArray();
-        }
-
-        return $payload;
+        return $this->export( Builder::repeater, [
+            'layout' => $this->layout,
+            'button_label' => $this->button,
+            'min' => $this->min,
+            'max' => $this->max,
+            'fields' => array_map( function (Field $field) {
+                return $field->toArray();
+            }, $this->fields ),
+        ] );
     }
 }

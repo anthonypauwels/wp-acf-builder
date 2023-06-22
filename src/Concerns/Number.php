@@ -1,6 +1,15 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
+use Anthonypauwels\WpAcfBuilder\Fields\RangeField;
+use Anthonypauwels\WpAcfBuilder\Fields\NumberField;
+
+/**
+ * Class Number
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait Number
 {
     /** @var int */
@@ -14,7 +23,7 @@ trait Number
 
     /**
      * @param int $value
-     * @return $this
+     * @return NumberField|Number|RangeField
      */
     public function min(int $value): self
     {
@@ -25,7 +34,7 @@ trait Number
 
     /**
      * @param int $value
-     * @return $this
+     * @return NumberField|Number|RangeField
      */
     public function max(int $value): self
     {
@@ -36,7 +45,7 @@ trait Number
 
     /**
      * @param int $value
-     * @return $this
+     * @return NumberField|Number|RangeField
      */
     public function step(int $value): self
     {

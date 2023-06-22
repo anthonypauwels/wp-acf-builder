@@ -1,6 +1,15 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
+use Anthonypauwels\WpAcfBuilder\AbstractGroup;
+use Anthonypauwels\WpAcfBuilder\Fields\AbstractField;
+
+/**
+ * Class DefaultValue
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait DefaultValue
 {
     /** @var string */
@@ -8,7 +17,7 @@ trait DefaultValue
 
     /**
      * @param string $default
-     * @return $this
+     * @return DefaultValue|AbstractGroup|AbstractField
      */
     public function default(string $default): self
     {

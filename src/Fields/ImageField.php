@@ -1,11 +1,18 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Concerns\File;
 use Anthonypauwels\WpAcfBuilder\Concerns\Image;
 use Anthonypauwels\WpAcfBuilder\Concerns\Library;
 use Anthonypauwels\WpAcfBuilder\Concerns\Preview;
 
+/**
+ * Class ImageField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class ImageField extends AbstractField
 {
     use File, Image, Library, Preview;
@@ -55,20 +62,17 @@ class ImageField extends AbstractField
      */
     public function toArray(): array
     {
-        return array_merge(
-            $this->genericExport('image'),
-            [
-                'return_format' => $this->format,
-                'preview_size' => $this->previewSize,
-                'library' => $this->restrictLibrary,
-                'min_width' => $this->minWidth,
-                'min_height' => $this->minHeight,
-                'min_size' => $this->minSize,
-                'max_width' => $this->maxWidth,
-                'max_height' => $this->maxHeight,
-                'max_size' => $this->maxSize,
-                'mime_types' => implode(',', $this->mimeTypes ),
-            ]
-        );
+        return $this->export( Builder::image, [
+            'return_format' => $this->format,
+            'preview_size' => $this->previewSize,
+            'library' => $this->restrictLibrary,
+            'min_width' => $this->minWidth,
+            'min_height' => $this->minHeight,
+            'min_size' => $this->minSize,
+            'max_width' => $this->maxWidth,
+            'max_height' => $this->maxHeight,
+            'max_size' => $this->maxSize,
+            'mime_types' => implode(',', $this->mimeTypes ),
+        ] );
     }
 }

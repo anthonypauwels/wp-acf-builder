@@ -1,6 +1,14 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
+
+/**
+ * Class OEmbedField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class OEmbedField extends AbstractField
 {
     /** @var int */
@@ -46,12 +54,9 @@ class OEmbedField extends AbstractField
      */
     public function toArray():array
     {
-        return array_merge(
-            $this->genericExport('oembed'),
-            [
-                'width' => $this->width > 0 ? $this->width : '',
-                'height' => $this->height > 0 ? $this->height : '',
-            ]
-        );
+        return $this->export( Builder::oembed, [
+            'width' => $this->width > 0 ? $this->width : '',
+            'height' => $this->height > 0 ? $this->height : '',
+        ] );
     }
 }

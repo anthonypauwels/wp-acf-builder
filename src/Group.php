@@ -5,6 +5,12 @@ use Anthonypauwels\WpAcfBuilder\Contracts\Field;
 use Anthonypauwels\WpAcfBuilder\Concerns\Subfields;
 use Anthonypauwels\WpAcfBuilder\Concerns\Layoutable;
 
+/**
+ * Class Group
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class Group extends AbstractGroup implements Field
 {
     use Layoutable, Subfields;
@@ -16,18 +22,11 @@ class Group extends AbstractGroup implements Field
      */
     public function toArray(): array
     {
-        $payload = array_merge(
-            $this->genericExport('group'),
-            [
-                'layout' => $this->layout,
-            ]
-        );
-
-        /** @var Field $field */
-        foreach ( $this->fields as $field ) {
-            $payload['sub_fields'][] = $field->toArray();
-        }
-
-        return $payload;
+        return $this->export( Builder::group, [
+            'layout' => $this->layout,
+            'fields' => array_map( function (Field $field) {
+                return $field->toArray();
+            }, $this->fields ),
+        ] );
     }
 }

@@ -1,6 +1,16 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
+use Anthonypauwels\WpAcfBuilder\Group;
+use Anthonypauwels\WpAcfBuilder\Layout;
+use Anthonypauwels\WpAcfBuilder\Repeater;
+
+/**
+ * Class Layoutable
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait Layoutable
 {
     /** @var string */
@@ -8,7 +18,7 @@ trait Layoutable
 
     /**
      * @param string $value
-     * @return $this
+     * @return Repeater|Layoutable|Group|Layout
      */
     public function layout(string $value):self
     {
@@ -20,7 +30,7 @@ trait Layoutable
     }
 
     /**
-     * @return $this
+     * @return Repeater|Layoutable|Group|Layout
      */
     public function blockLayout():self
     {
@@ -28,7 +38,7 @@ trait Layoutable
     }
 
     /**
-     * @return $this
+     * @return Repeater|Layoutable|Group|Layout
      */
     public function tableLayout():self
     {
@@ -36,7 +46,7 @@ trait Layoutable
     }
 
     /**
-     * @return $this
+     * @return Repeater|Layoutable|Group|Layout
      */
     public function rowLayout():self
     {

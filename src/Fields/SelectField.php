@@ -1,11 +1,18 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Concerns\Choices;
 use Anthonypauwels\WpAcfBuilder\Concerns\Multiple;
 use Anthonypauwels\WpAcfBuilder\Concerns\Nullable;
 use Anthonypauwels\WpAcfBuilder\Concerns\Placeholder;
 
+/**
+ * Class SelectField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class SelectField extends AbstractField
 {
     use Choices, Nullable, Placeholder, Multiple;
@@ -76,16 +83,13 @@ class SelectField extends AbstractField
             $this->select2Ui();
         }
 
-        return array_merge(
-            $this->genericExport('select'),
-            [
-                'choice' => $this->choices,
-                'allow_null' => (int) $this->nullable,
-                'multiple' => (int) $this->multiple,
-                'ui' => (int) $this->ui,
-                'ajax' => (int) $this->ajax,
-                'placeholder' => $this->placeholder,
-            ]
-        );
+        return $this->export( Builder::select, [
+            'choice' => $this->choices,
+            'allow_null' => (int) $this->nullable,
+            'multiple' => (int) $this->multiple,
+            'ui' => (int) $this->ui,
+            'ajax' => (int) $this->ajax,
+            'placeholder' => $this->placeholder,
+        ] );
     }
 }

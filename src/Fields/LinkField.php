@@ -1,6 +1,14 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
+
+/**
+ * Class LinkField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class LinkField extends AbstractField
 {
     /** @var string */
@@ -40,11 +48,8 @@ class LinkField extends AbstractField
      */
     public function toArray():array
     {
-        return array_merge(
-            $this->genericExport('link'),
-            [
-                'return_format' => $this->format,
-            ]
-        );
+        return $this->export( Builder::link, [
+            'return_format' => $this->format,
+        ] );
     }
 }

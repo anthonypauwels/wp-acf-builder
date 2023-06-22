@@ -1,9 +1,16 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Concerns\Choices;
 use Anthonypauwels\WpAcfBuilder\Concerns\Position;
 
+/**
+ * Class CheckboxField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class CheckboxField extends AbstractField
 {
     use Choices, Position;
@@ -119,16 +126,13 @@ class CheckboxField extends AbstractField
      */
     public function toArray(): array
     {
-        return array_merge(
-            $this->genericExport('checkbox'),
-            [
-                'choices' => $this->choices,
-                'layout' => $this->layout,
-                'allow_custom' => $this->allowCustom,
-                'save_custom' => $this->saveCustom,
-                'toggle' => $this->toggle,
-                'return_format' => $this->format,
-            ]
-        );
+        return $this->export( Builder::checkbox, [
+            'choices' => $this->choices,
+            'layout' => $this->layout,
+            'allow_custom' => $this->allowCustom,
+            'save_custom' => $this->saveCustom,
+            'toggle' => $this->toggle,
+            'return_format' => $this->format,
+        ] );
     }
 }

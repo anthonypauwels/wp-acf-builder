@@ -6,6 +6,12 @@ use Anthonypauwels\WpAcfBuilder\Concerns\Button;
 use Anthonypauwels\WpAcfBuilder\Concerns\MinMax;
 use Anthonypauwels\WpAcfBuilder\Contracts\Field;
 
+/**
+ * Class Flexible
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class Flexible extends AbstractGroup implements Field
 {
     use Button, MinMax;
@@ -62,18 +68,15 @@ class Flexible extends AbstractGroup implements Field
     }
 
     /**
-     *
-     *
      * @return array
      */
     public function toArray(): array
     {
-        return array_merge(
-            $this->genericExport('flexible'),
-            [
-                'layouts' => $this->layouts,
-                'button_label' => $this->button,
-            ]
-        );
+        return $this->export( Builder::flexible, [
+            'layouts' => $this->layouts,
+            'button_label' => $this->button,
+            'min' => $this->min,
+            'max' => $this->max,
+        ] );
     }
 }

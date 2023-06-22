@@ -1,6 +1,12 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
+/**
+ * Class Jsonable
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait Jsonable
 {
     /**

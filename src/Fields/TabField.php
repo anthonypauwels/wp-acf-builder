@@ -1,6 +1,14 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
+
+/**
+ * Class TabField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class TabField extends AbstractField
 {
     /** @var string */
@@ -55,11 +63,8 @@ class TabField extends AbstractField
      */
     public function toArray(): array
     {
-        return array_merge(
-            $this->genericExport('tab'),
-            [
-                'placement' => $this->placement,
-            ]
-        );
+        return $this->export( Builder::tab, [
+            'placement' => $this->placement,
+        ] );
     }
 }

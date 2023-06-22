@@ -1,6 +1,16 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Concerns;
 
+use Anthonypauwels\WpAcfBuilder\Fields\FileField;
+use Anthonypauwels\WpAcfBuilder\Fields\ImageField;
+use Anthonypauwels\WpAcfBuilder\Fields\GalleryField;
+
+/**
+ * Class File
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 trait File
 {
     /** @var int */
@@ -14,7 +24,7 @@ trait File
 
     /**
      * @param ...$mime_types
-     * @return $this
+     * @return FileField|File|GalleryField|ImageField
      */
     public function mimeTypes(...$mime_types): self
     {
@@ -26,7 +36,7 @@ trait File
     /**
      * @param int $value
      * @param string $unit
-     * @return $this
+     * @return FileField|File|GalleryField|ImageField
      */
     public function minSize(int $value, string $unit = 'MB'): self
     {
@@ -38,7 +48,7 @@ trait File
     /**
      * @param int $value
      * @param string $unit
-     * @return $this
+     * @return FileField|File|GalleryField|ImageField
      */
     public function maxSize(int $value, string $unit = 'MB'): self
     {
@@ -51,7 +61,7 @@ trait File
      * @param int $min
      * @param int $max
      * @param string $unit
-     * @return $this
+     * @return FileField|File|GalleryField|ImageField
      */
     public function size(int $min, int $max = 0, string $unit = 'MB'): self
     {

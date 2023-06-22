@@ -11,6 +11,12 @@ use Anthonypauwels\WpAcfBuilder\Concerns\Instruction;
 use Anthonypauwels\WpAcfBuilder\Concerns\Conditional;
 use Anthonypauwels\WpAcfBuilder\Concerns\DefaultValue;
 
+/**
+ * Class AbstractField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 abstract class AbstractField implements Field
 {
     use Jsonable, Wrapper, Conditional, Required, DefaultValue, Instruction, OnFilters;
@@ -61,12 +67,12 @@ abstract class AbstractField implements Field
 
     /**
      * @param string $type
+     * @param array $more_params
      * @return array
      */
-    protected function genericExport(string $type): array
+    protected function export(string $type, array $more_params = []): array
     {
         return array_merge(
-            Builder::getParams(),
             $this->params, [
             'key' => $this->getKey(),
             'name' => $this->name,
@@ -77,7 +83,9 @@ abstract class AbstractField implements Field
             'conditional_logic' => empty( $this->conditionalLogic ) ? 0 : $this->conditionalLogic,
             'wrapper' => $this->wrapperAttributes,
             'default_value' => $this->default,
-        ] );
+        ], Builder::getFieldConfig( $type ),
+            $more_params
+        );
     }
 
     /**

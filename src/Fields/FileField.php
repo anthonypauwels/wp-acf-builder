@@ -1,10 +1,17 @@
 <?php
 namespace Anthonypauwels\WpAcfBuilder\Fields;
 
+use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Concerns\File;
 use Anthonypauwels\WpAcfBuilder\Concerns\Library;
 use Anthonypauwels\WpAcfBuilder\Concerns\Preview;
 
+/**
+ * Class FileField
+ *
+ * @package Anthonypauwels\WpAcfBuilder
+ * @author Anthony Pauwels <hello@anthonypauwels.be>
+ */
 class FileField extends AbstractField
 {
     use Library, File, Preview;
@@ -54,16 +61,13 @@ class FileField extends AbstractField
      */
     public function toArray(): array
     {
-        return array_merge(
-            $this->genericExport('file'),
-            [
-                'return_format' => $this->format,
-                'preview_size' => $this->previewSize,
-                'library' => $this->restrictLibrary,
-                'min_size' => $this->minSize,
-                'max_size' => $this->maxSize,
-                'mime_types' => implode(',', $this->mimeTypes ),
-            ]
-        );
+        return $this->export( Builder::file, [
+            'return_format' => $this->format,
+            'preview_size' => $this->previewSize,
+            'library' => $this->restrictLibrary,
+            'min_size' => $this->minSize,
+            'max_size' => $this->maxSize,
+            'mime_types' => implode(',', $this->mimeTypes ),
+        ] );
     }
 }
