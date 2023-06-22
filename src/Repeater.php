@@ -29,7 +29,7 @@ class Repeater extends AbstractGroup implements Field
             'button_label' => $this->button,
             'min' => $this->min,
             'max' => $this->max,
-            'fields' => array_map( function (Field $field) {
+            'sub_fields' => array_map( function (Field $field) {
                 return $field->toArray();
             }, $this->fields ),
         ] );

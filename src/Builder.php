@@ -3,6 +3,7 @@ namespace Anthonypauwels\WpAcfBuilder;
 
 use Closure;
 use InvalidArgumentException;
+use Anthonypauwels\WpAcfBuilder\Contracts\Field;
 use Anthonypauwels\WpAcfBuilder\Fields\TabField;
 use Anthonypauwels\WpAcfBuilder\Fields\UrlField;
 use Anthonypauwels\WpAcfBuilder\Fields\TimeField;
@@ -34,6 +35,7 @@ use Anthonypauwels\WpAcfBuilder\Fields\AccordionField;
 use Anthonypauwels\WpAcfBuilder\Fields\PostObjectField;
 use Anthonypauwels\WpAcfBuilder\Fields\ButtonGroupField;
 use Anthonypauwels\WpAcfBuilder\Fields\RelationshipField;
+use Anthonypauwels\WpAcfBuilder\Contracts\Group as GroupInterface;
 
 /**
  * Class Builder
@@ -359,7 +361,7 @@ class Builder
     public static function config(array $config): void
     {
         $config = array_map( function ( $field ) {
-            if ( method_exists( $field, 'toArray' ) ) {
+            if ( $field instanceof Field || $field instanceof GroupInterface ) {
                 $field = $field->toArray();
             }
 
@@ -383,8 +385,8 @@ class Builder
     public static function getFieldConfig(string $config_name): array
     {
         return array_merge(
-            self::$config[ self::all ],
-            self::$config[ $config_name ] ?: []
+            isset( self::$config[ self::all ] ) ? self::$config[ self::all ] : [],
+            isset( self::$config[ $config_name ] ) ? self::$config[ $config_name ] : []
         );
     }
 

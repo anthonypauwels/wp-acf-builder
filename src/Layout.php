@@ -22,7 +22,7 @@ class Layout extends AbstractGroup
     {
         return $this->export( Builder::layout, [
             'layout' => $this->layout,
-            'fields' => array_map( function (Field $field) {
+            'sub_fields' => array_map( function (Field $field) {
                 return $field->toArray();
             }, $this->fields ),
         ] );

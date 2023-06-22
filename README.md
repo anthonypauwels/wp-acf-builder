@@ -232,6 +232,7 @@ you can set a value to `wpml_cf_preferences` like this way :
 // ...
 function ( Group $group ) {
     $group->text('Sub Title')->param('wpml_cf_preferences', 2 ); // This field will be translated
+    $group->text('Sub Title')->params( ['wpml_cf_preferences' => 2 ] ); // you can pass array of parameters with `params` method
 } )
 // ...
 ```
@@ -461,6 +462,8 @@ $repeater->max(9); // default to 0 (infinity)
 Every field inherit from `AbstractField` class that provide generic API. Example below works with all fields :
 
 ```php
+$group->text(/* ... */)->param('key', 'value');
+$group->text(/* ... */)->params( [ 'key' => 'value', 'foo' => 'bar' ] );
 $group->text(/* ... */)->default('Here is a default value');
 $group->text(/* ... */)->instructions('Here is an instruction message');
 $group->text(/* ... */)->required(); // pass `false` to not required

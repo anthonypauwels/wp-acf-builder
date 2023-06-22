@@ -24,7 +24,7 @@ class Group extends AbstractGroup implements Field
     {
         return $this->export( Builder::group, [
             'layout' => $this->layout,
-            'fields' => array_map( function (Field $field) {
+            'sub_fields' => array_map( function (Field $field) {
                 return $field->toArray();
             }, $this->fields ),
         ] );

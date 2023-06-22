@@ -66,6 +66,19 @@ abstract class AbstractField implements Field
     }
 
     /**
+     * @param array $parameters
+     * @return $this
+     */
+    public function params(array $parameters): AbstractField
+    {
+        foreach ( $parameters as $key => $value ) {
+            $this->param( $key, $value );
+        }
+
+        return $this;
+    }
+
+    /**
      * @param string $type
      * @param array $more_params
      * @return array
