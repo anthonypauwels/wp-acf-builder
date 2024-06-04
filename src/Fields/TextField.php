@@ -4,7 +4,7 @@ namespace Anthonypauwels\WpAcfBuilder\Fields;
 use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Concerns\Content;
 use Anthonypauwels\WpAcfBuilder\Concerns\Disabled;
-use Anthonypauwels\WpAcfBuilder\Concerns\ReadOnly;
+use Anthonypauwels\WpAcfBuilder\Concerns\CanBeReadOnly;
 use Anthonypauwels\WpAcfBuilder\Concerns\MaxLength;
 use Anthonypauwels\WpAcfBuilder\Concerns\Placeholder;
 
@@ -16,7 +16,7 @@ use Anthonypauwels\WpAcfBuilder\Concerns\Placeholder;
  */
 class TextField extends AbstractField
 {
-    use Placeholder, Content, ReadOnly, Disabled, MaxLength;
+    use Placeholder, Content, CanBeReadOnly, Disabled, MaxLength;
 
     /**
      * @return array

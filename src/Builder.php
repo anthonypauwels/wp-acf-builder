@@ -347,7 +347,7 @@ class Builder
     {
         $group = new $class_name( $title, $key, $label );
 
-        $closure->call( $group, $group );
+        $closure( $group );
 
         return $group;
     }

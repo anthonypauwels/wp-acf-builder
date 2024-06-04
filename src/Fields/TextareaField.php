@@ -4,7 +4,7 @@ use Anthonypauwels\WpAcfBuilder\Builder;
 use Anthonypauwels\WpAcfBuilder\Concerns\Content;
 use Anthonypauwels\WpAcfBuilder\Concerns\Disabled;
 use Anthonypauwels\WpAcfBuilder\Concerns\NewLines;
-use Anthonypauwels\WpAcfBuilder\Concerns\ReadOnly;
+use Anthonypauwels\WpAcfBuilder\Concerns\CanBeReadOnly;
 use Anthonypauwels\WpAcfBuilder\Concerns\MaxLength;
 use Anthonypauwels\WpAcfBuilder\Concerns\Placeholder;
 
@@ -16,7 +16,7 @@ use Anthonypauwels\WpAcfBuilder\Concerns\Placeholder;
  */
 class TextareaField extends AbstractField
 {
-    use Content, Placeholder, Disabled, ReadOnly, MaxLength, NewLines;
+    use Content, Placeholder, Disabled, CanBeReadOnly, MaxLength, NewLines;
 
     /** @var int */
     protected int $rows = 0;
