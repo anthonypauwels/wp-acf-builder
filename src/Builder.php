@@ -324,7 +324,7 @@ class Builder
     {
         /** @var Location $group */
         $group = self::createGroup( $title, $closure, Location::class, $page );
-        $group->optionsPage();
+        $group->optionsPage( $page );
 
         if ( $build ) {
             self::$markedForBuild[] = $group;
