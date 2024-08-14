@@ -837,7 +837,7 @@ trait Subfields
 
         $this->addField( $flexible );
 
-        $closure->call( $flexible, $flexible );
+        $closure( $flexible );
 
         return $flexible;
     }

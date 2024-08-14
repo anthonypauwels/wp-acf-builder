@@ -151,7 +151,7 @@ class Builder
     const wysiwyg = 'wysiwyg';
 
     /** @var string */
-    const flexible = 'flexible';
+    const flexible = 'flexible_content';
 
     /** @var string */
     const group = 'group';
@@ -273,8 +273,7 @@ class Builder
     public static function postType(string $post_type, string $title, Closure $closure, string $key = null, bool $build = true): Location
     {
         /** @var Location $group */
-        $group = self::createGroup( $title, $closure, Location::class, $key );
-        $group->postType( $post_type );
+        $group = self::createGroup( $title, $closure, Location::class, $key )->postType( $post_type );
 
         if ( $build ) {
             self::$markedForBuild[] = $group;
@@ -301,8 +300,7 @@ class Builder
         $full_template_path = implode(DIRECTORY_SEPARATOR, $namespaces );
 
         /** @var Location $group */
-        $group = self::createGroup( $title, $closure, Location::class, $key );
-        $group->pageTemplate( $full_template_path );
+        $group = self::createGroup( $title, $closure, Location::class, $key )->pageTemplate( $full_template_path );
 
         if ( $build ) {
             self::$markedForBuild[] = $group;
@@ -323,8 +321,7 @@ class Builder
     public static function optionsPage(string $title, Closure $closure, string $page = 'options', bool $build = true): Location
     {
         /** @var Location $group */
-        $group = self::createGroup( $title, $closure, Location::class, $page );
-        $group->optionsPage( $page );
+        $group = self::createGroup( $title, $closure, Location::class, $page )->optionsPage( $page );
 
         if ( $build ) {
             self::$markedForBuild[] = $group;

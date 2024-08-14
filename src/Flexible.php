@@ -51,7 +51,7 @@ class Flexible extends AbstractGroup implements Field
 
         $this->addLayout( $layout );
 
-        $closure->call( $layout, $layout );
+        $closure( $layout );
 
         return $layout;
     }
@@ -73,7 +73,9 @@ class Flexible extends AbstractGroup implements Field
     public function toArray(): array
     {
         return $this->export( Builder::flexible, [
-            'layouts' => $this->layouts,
+            'layouts' => array_map( function (Layout $layout) {
+	            return $layout->toArray();
+            }, $this->layouts ),
             'button_label' => $this->button,
             'min' => $this->min,
             'max' => $this->max,
